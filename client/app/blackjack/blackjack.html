@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="icon" href="http://getbootstrap.com/favicon.ico">
+
+    <title>AngularJS & Firebase Web App</title>
+
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Player Record</h2>
+    <p>wins:{{vm.playerRecord.wins}}</p>
+    <p>losses:{{vm.playerRecord.losses}}</p>
+    <div ng-if="vm.game.gameState.playerCards.length">
+        <p>dealerHand: {{vm.game.gameState.dealerCards[0].rank}} of {{vm.game.gameState.dealerCards[0].suit}}</p>
+        <p>playerHand:</p>
+            <ul>
+                <li ng-repeat="card in vm.game.gameState.playerCards">{{card.rank}} of {{card.suit}}</li>
+            </ul>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" ng-if="vm.game.gameState.inProgress" ng-click="vm.hitMe()" type="button">Hit Me!</button>
+    <button class="btn btn-lg btn-primary btn-block" ng-if="vm.game.gameState.inProgress" ng-click="vm.getResult()" type="button">Stick!</button>
+    <button class="btn btn-lg btn-primary btn-block" ng-if="!vm.game.gameState.inProgress" ng-click="vm.startNewGame()" type="button">New Game</button>
+
+</div>
+
+
+</body>
+</html>
